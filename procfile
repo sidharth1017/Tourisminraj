@@ -1,0 +1,1 @@
+web: gunicorn Tourismraj.wsgi --log-file -

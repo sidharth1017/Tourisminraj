@@ -1,0 +1,370 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} {{place.name}} - Tourism in Rajasthan {% endblock %}
+
+{% block linkshead %}
+<style>
+    .home-section {
+        padding: 0px 5%;
+        margin-bottom: 25px;
+    }
+
+    .home-section .cover-inner {
+        position: relative;
+    }
+
+    .home-section .cover-inner:before {
+        content: '';
+        display: block;
+        padding-top: 42.85%;
+    }
+
+    .home-section .cover-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .home-section .cover-img img {
+        min-height: 300px;
+        object-fit: cover;
+        width: 100%;
+        height: 550px;
+    }
+
+    .home-section .cover-caption {
+        bottom: auto;
+        top: 50%;
+        text-align: center;
+        transform: translateY(-50%);
+        left: 0;
+        right: 0;
+    }
+
+    .cover-caption {
+        position: absolute;
+        right: 15%;
+        bottom: 30%;
+        left: 15%;
+        z-index: 10;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        text-align: center;
+    }
+
+    .home-section .cover-inner .cover-img:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 550px;
+        background: rgba(0, 0, 0, 0.49);
+        z-index: 1;
+    }
+
+    .home-section .cover-caption .text {
+        color: white;
+        font-size: 80px;
+        font-family: monospace;
+    }
+
+    .desc p {
+        font-size: 16px;
+        color: #5a5a5a;
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    .details {
+        margin-bottom: 50px;
+    }
+
+    table {
+        margin-bottom: 10px;
+        border: 1px solid #d9d9d9;
+        width: 591px;
+    }
+
+    tbody {
+        display: table-row-group;
+        vertical-align: middle;
+        border-color: inherit;
+    }
+
+    table td {
+        padding: 3px 10px;
+        border-bottom: 1px solid #d9d9d9;
+        border-right: 1px solid #d9d9d9;
+    }
+
+    .map{
+        margin-bottom: 50px;
+    }
+
+    /* Reviews Section CSS */
+    .Review-heading {
+        font-family: 'Poppins';
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+
+        letter-spacing: 1px;
+        margin: 10px 5px;
+        padding: 5px 10px;
+
+    }
+
+    .Review-heading h1 {
+        font-size: 1.2rem;
+        font-weight: 500;
+        background-color: #202020;
+        color: #ffffff;
+        padding: 10px 20px;
+        margin-right: 80px;
+    }
+
+    .Review-top {
+        font-size: 1rem;
+        color: #252525;
+        margin-bottom: 10px;
+        margin-right: 60px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    .checked {
+        color: orange;
+    }
+
+    .Review-box-container {
+        width: 500px;
+        box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.1);
+        background-color: #ffffff;
+        padding: 20px;
+        margin: 25px 15px 15px 15px;
+        cursor: pointer;
+    }
+
+    .Name-User {
+        display: flex;
+        flex-direction: column;
+        font-family: 'Poppins';
+    }
+
+    .Name-User strong {
+        color: #3d3d3d;
+        font-size: 1.1rem;
+        letter-spacing: 0.5px;
+    }
+
+    .review-box-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .client-comment p {
+        font-size: 0.9rem;
+        color: #4b4b4b;
+    }
+
+    .review-box-bottom {
+        margin-bottom: 15px;
+
+    }
+
+    .Review-box-container:hover {
+        transform: translateY(-10px);
+        transition: all ease 0.3s;
+
+    }
+
+    .Write-review-content {
+        width: 500px;
+        box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.1);
+        background-color: #ffffff;
+        padding: 20px;
+        margin: 25px 15px 15px 15px;
+    }
+
+    .Write-review-head {
+        font-family: 'Poppins';
+        font-size: 0.2rem;
+        font-weight: 500;
+        width: 250px;
+        background-color: #202020;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        color: #ffffff;
+        padding: 5px 10px;
+        margin: 48px 0px 10px 15px;
+    }
+
+    .stars:hover {
+        color: orange;
+
+    }
+
+    .sub-btn {
+        text-align: center;
+
+    }
+
+    .btn-primary {
+        background-color: #202020;
+        border-color: #202020;
+
+    }
+
+    .btn-primary:hover {
+        color: #202020;
+        background-color: #ffffff;
+        border-color: #202020;
+    }
+
+    .rating {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: left;
+        margin-top: -8px;
+        margin-left: 5px;
+    }
+
+    .rating>input {
+        display: none;
+    }
+
+    .rating>label {
+        position: relative;
+        width: 0.8em;
+        font-size: 1.5em;
+        color: orange;
+        cursor: pointer;
+
+    }
+
+    .rating>label::before {
+        content: "\2605";
+        position: absolute;
+        opacity: 0;
+    }
+
+    .rating>label:hover:before,
+    .rating>label:hover~label:before {
+        opacity: 1 !important;
+    }
+
+    .rating>input:checked~label:before {
+        opacity: 1;
+    }
+
+    .rating:hover>input:checked~label:before {
+        opacity: 1;
+    }
+
+    textarea {
+        resize: vertical;
+        width: 540px;
+    }
+
+    .form-group {
+        display: flex;
+    }
+
+    .review-form {
+        box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin: 25px 15px 15px 15px;
+    }
+
+    .review-form .form-control {
+        background-color: #f0f4f5;
+        height: 50px;
+        padding-left: 16px;
+    }
+
+    /* Reviews Section CSS */
+</style>
+{% endblock %}
+
+{% block body %}
+
+<!-- Cover section Start -->
+<section class="home-section section" id="home">
+    <div class="cover-inner">
+        <div class="cover-img">
+            <img src="{{travelagent.images.url}}" alt="">
+        </div>
+        <div class="cover-caption">
+            <h3 class="text">{{travelagent.firmname}}</h3>
+        </div>
+    </div>
+    <div class="desc">
+        <p>{{travelagent.desc}}</p>
+    </div>
+    <div class="details">
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <p><strong>Location</strong></p>
+                    </td>
+                    <td>
+                        <p>{{travelagent.address}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><strong>Details of Vehicle</strong></p>
+                    </td>
+                    <td>
+                        <p>{{travelagent.vehicle}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><strong>Facilities</strong></p>
+                    </td>
+                    <td>
+                        <p>{{travelagent.Facilities}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><strong>Contact details</strong></p>
+                    </td>
+                    <td>
+                        <a href="tel:{{travelagent.contact_no}}">{{travelagent.contact_no}}</a>
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+
+    <div class="map">
+        <center>
+            <iframe src="{{travelagent.maplink}}" width="1080" height="500" style="border:0;" allowfullscreen=""
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </center>
+    </div>
+</section>
+
+<!-- Cover section End -->
+
+
+
+{% endblock %}

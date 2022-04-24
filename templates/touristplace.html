@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block linkshead %}
+<link rel="stylesheet" href="{% static 'CSS/discover.css' %}">
+{% endblock %}
+
+{% block body %}
+
+<!-- Cover Video Start -->
+<section class="home-section section" id="home">
+    <div class="container glass">
+        <center>
+            <img class="cover-video" src="https://www.tourism.rajasthan.gov.in/content/dam/rajasthan-tourism/english/destinations/AKT552.jpg" alt="">
+        </center>
+    </div>
+</section>
+<!-- Cover Video End -->
+
+<!-- Slider Start -->
+
+
+<section class="slider-section section">
+    <div class="container">
+        <div class="row">
+            <h1 style="text-align: center; margin-bottom: 20px;">Religious Place in Rajasthan</h1>
+
+            {% for religiousplace in religiousplaces %}
+            <div class="col">
+                <div class="box">
+                    <!-- img box -->
+                    <div class="slide-img">
+                        <img src="{{religiousplace.images.url}}"
+                            alt="">
+                    </div>
+                    <!-- detail box -->
+                    <div class="detail-box">
+                        <div class="name">
+                            <a href="#">{{religiousplace.name}}</a>
+                        </div>
+                        <div class="desc">
+                            <a href="#">Know More <i class="uil uil-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+<!-- Slider Ends -->
+
+{% endblock %}
