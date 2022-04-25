@@ -1,6 +1,6 @@
 # Database Mangment and system
 
-## Project Title - Fest managment System
+## Project Title - Fest Information System
 ### Installation of Project
 
 1. Python shloud be installed on your laptop
