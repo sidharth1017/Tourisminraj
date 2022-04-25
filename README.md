@@ -1,7 +1,6 @@
 # Database Mangment and system
 
-## Project Title - Tourism in Rajasthan
-
+## Project Title - Fest managment System
 ### Installation of Project
 
 1. Python shloud be installed on your laptop
