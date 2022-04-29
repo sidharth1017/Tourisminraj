@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} Jaipur - Tourism in Rajasthan {% endblock %}
+
+{% block linkshead %}
+<link rel="stylesheet" href="{% static 'CSS/discover.css' %}">
+
+<style>
+.parallax {
+    background-image: url("https://www.micato.com/wp-content/uploads/2018/09/jaipur-1110x700.jpg");
+    min-height: 100vh;
+    min-width: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+
+<!-- Cover Section Start -->
+
+<section >
+    <div class="parallax"></div>
+</section>
+
+<!-- Cover Section End -->
+
+<!-- Slider Start -->
+
+<section class="slider-section section">
+    <div class="container">
+        <div class="row">
+            <h1>Tourist Place in Jaipur</h1>
+
+            {% for fort in forts %}
+            <div class="col">
+                <div class="box">
+                    <!-- img box -->
+                    <div class="slide-img">
+                        <img src="{{fort.images.url}}" alt="">
+                    </div>
+                    <!-- detail box -->
+                    <div class="detail-box">
+                        <div class="name">
+                            <a href="/places/{{fort.id}}">{{fort.name}}</a>
+                        </div>
+                        <div class="desc">
+                            <a href="/places/{{fort.id}}">Know More <i class="uil uil-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+
+<!-- Slider Ends -->
+
+{% endblock %}

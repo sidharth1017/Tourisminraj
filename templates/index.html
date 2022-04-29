@@ -126,7 +126,7 @@
     }
 
     .photo-grid {
-        /* height: 270vh; */
+        height: 250vh;
         margin-bottom: 30px;
     }
 
@@ -197,16 +197,16 @@
                 <div class="box">
                     <!-- img box -->
                     <div class="slide-img">
-                        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/01/41/a8/07/jai-mahal-lake-palace.jpg?w=500&h=300&s=1"
+                        <img src="https://www.micato.com/wp-content/uploads/2018/09/jaipur-1110x700.jpg"
                             alt="">
                     </div>
                     <!-- detail box -->
                     <div class="detail-box">
                         <div class="name">
-                            <a href="#">Jaipur</a>
+                            <a href="/jaipur/">Jaipur</a>
                         </div>
                         <div class="desc">
-                            <a href="#">Read More <i class="uil uil-arrow-right"></i></a>
+                            <a href="/jaipur/">Read More <i class="uil uil-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -215,16 +215,16 @@
                 <div class="box">
                     <!-- img box -->
                     <div class="slide-img">
-                        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0c/77/15/9a/photo0jpg.jpg?w=600&h=400&s=1"
+                        <img src="https://www.tripsavvy.com/thmb/saxdtK__W0j14gkQ2tEjjAkEB-Y=/2121x1414/filters:fill(auto,1)/GettyImages-956035876-76efc27d14d24032a3f3d1fcefdc4413.jpg"
                             alt="">
                     </div>
                     <!-- detail box -->
                     <div class="detail-box">
                         <div class="name">
-                            <a href="#">Udaipur</a>
+                            <a href="/udaipur/">Udaipur</a>
                         </div>
                         <div class="desc">
-                            <a href="#">Read More <i class="uil uil-arrow-right"></i></a>
+                            <a href="/udaipur/">Read More <i class="uil uil-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -233,16 +233,16 @@
                 <div class="box">
                     <!-- img box -->
                     <div class="slide-img">
-                        <img src="https://images.thrillophilia.com/image/upload/s--Bfjt9FIq--/c_fill,g_auto,h_600,q_auto,w_975/f_auto,fl_strip_profile/v1/images/photos/000/013/603/original/1571301931_Jaisalmer.jpg.jpg"
+                        <img src="https://clubmahindra.gumlet.io/blog/media/section_images/shuttersto-0191b7c1cea5449.jpg?w=480&dpr=2.6"
                             alt="">
                     </div>
                     <!-- detail box -->
                     <div class="detail-box">
                         <div class="name">
-                            <a href="#">Jaisalmer</a>
+                            <a href="/jaisalmer/">Jaisalmer</a>
                         </div>
                         <div class="desc">
-                            <a href="#">Read More <i class="uil uil-arrow-right"></i></a>
+                            <a href="/jaisalmer/">Read More <i class="uil uil-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -251,6 +251,41 @@
     </div>
 </section>
 <!-- Slider Ends -->
+
+<!-- Slider Start -->
+
+
+<section class="slider-section section">
+    <div class="container">
+        <div class="row">
+            <h1 style="text-align: center;">Best spots to visit</h1>
+            
+            {% for place in places %}
+            <div class="col">
+                <div class="box">
+                    <!-- img box -->
+                    <div class="slide-img">
+                        <img src="{{place.images.url}}"
+                            alt="">
+                    </div>
+                    <!-- detail box -->
+                    <div class="detail-box">
+                        <div class="name">
+                            <a href="/places/{{place.id}}">{{place.name}}</a>
+                        </div>
+                        <div class="desc">
+                            <a href="/places/{{place.id}}">Read More <i class="uil uil-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+<!-- Slider Ends -->
+
 
 <!-- Img Collage Start -->
 <div class="header">

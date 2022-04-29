@@ -9,7 +9,9 @@ from django.http import HttpResponse
 
 
 def home(request):
-    return render(request, 'index.html')
+    places = TouristSpot.objects.all()
+    context = {'places': places[0:3]}
+    return render(request, 'index.html', context)
 
 
 class contacts(View):
@@ -24,7 +26,7 @@ class contacts(View):
         message = request.POST.get('message')
         contact = Contact(name=name, email=email, message=message)
         contact.save()
-        messages = "Thanks for contacting us, we'll reach out you soon."
+        messages = "Thanks for contacting us, we'll reach out to you soon."
         msg = EmailMessage(
         "Somebody Contacted us!",
         "Name: "+name + ", Email: "+email + ", Message: "+message,
@@ -58,6 +60,11 @@ class museum(View):
         museums = TouristSpot.objects.filter(category="Museum")
         return render(request, 'museum.html', {'museums': museums})
 
+class Others(View):
+    def get(self, request):
+        Others = TouristSpot.objects.filter(category="Others")
+        return render(request, 'Others.html', {'Others':Others})
+
 
 class religiousplace(View):
     def get(self, request):
@@ -71,7 +78,6 @@ class placeview(View):
         place = TouristSpot.objects.filter(id=myid)
         reviews = Comment.objects.filter(place=myid)
         hotel = Hotel.objects.filter(place=myid)
-        print(hotel)
         context = {'place': place[0], 'reviews': reviews, 'hotel':hotel}
         return render(request, 'placeview.html', context)
 
@@ -90,7 +96,6 @@ class addcomment(View):
 
         place = TouristSpot.objects.filter(id=myid)
         reviews = Comment.objects.filter(place=myid)
-        # print(reviews)
         context = {'place': place[0], 'reviews': reviews, 'message':message}
 
         return render(request, 'placeview.html', context)
@@ -107,3 +112,19 @@ class travelagencyview(View):
         travelagent = TravelAgencie.objects.filter(id=myid)
         context = {'travelagent': travelagent[0]}
         return render(request, 'travelagencyview.html', context)
+
+
+class jaipur(View):
+    def get(self, request):
+        forts = TouristSpot.objects.filter(dname="Jaipur")
+        return render(request, 'jaipur.html', {'forts': forts})
+
+class udaipur(View):
+    def get(self, request):
+        forts = TouristSpot.objects.filter(dname="Udaipur")
+        return render(request, 'udaipur.html', {'forts': forts})
+
+class jaisalmer(View):
+    def get(self, request):
+        forts = TouristSpot.objects.filter(dname="Jaisalmer")
+        return render(request, 'jaisalmer.html', {'forts': forts})

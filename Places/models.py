@@ -22,7 +22,7 @@ class TouristSpot(models.Model):
     dname = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     desc = models.CharField(max_length=1000)
-    fee = models.CharField(max_length=100)
+    fee = models.CharField(max_length=500)
     tollfreeno = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
     Maplink = models.CharField(max_length=1000, default="")

@@ -385,9 +385,11 @@
 <!-- Hotel section start -->
 
 <div class="container">
+    {% if hotel %}
     <div class="Review-heading">
         <h1>Nearby Hotels</h1>
     </div>
+    {% endif %}
     <div class="row">
         {% for hotels in hotel %}
         <div class="col">
